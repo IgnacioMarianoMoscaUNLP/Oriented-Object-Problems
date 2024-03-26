@@ -1,0 +1,8 @@
+  Se utilizo adapter: el client es la clase mediaPlayer que colabora con objetos Media, Media es
+el target ya que define la interfaz especifica del dominio que usa el client. Tenemos como adaptador a 
+VideoStreamAdapter que adapta la interfaz de VideoStream para que se pueda utilizar como un Media, por ende 
+el Adaptee/Adaptado es VideoStream que tiene una interfaz diferente de Media, por lo que se define el 
+adaptador que entiende lo que Media hace y lo traduce a VideStream.
+   Podría ser en este problema que se utilice Strategy segun el Media a utilizar (Audio, video, videoStream), 
+habría que agregar la opción en MediaPlayer de cambiar el Media actual, pero en si solo agrega un modulo, y cada
+media entiende play de igual manera.
