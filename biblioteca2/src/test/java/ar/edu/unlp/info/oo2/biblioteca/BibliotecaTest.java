@@ -8,25 +8,27 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.json.simple.parser.*;
 
 public class BibliotecaTest {
 	Biblioteca biblioteca;
-	
 	@BeforeEach
 	void setUp() throws Exception{
 		biblioteca = new Biblioteca();
 		biblioteca.agregarSocio(new Socio("Arya Stark", "needle@stark.com", "5234-5"));
 		biblioteca.agregarSocio(new Socio("Tyron Lannister", "tyron@thelannisters.com",  "2345-2"));
+		biblioteca.setExporter(new JsonSimpleAdapter());
 	}
 	
 	@Test
-	public void testSociosExporter() {
-		assertTrue(this.biblioteca.exportarSocios().contains("Arya Stark"));
-		assertTrue(this.biblioteca.exportarSocios().contains("eedle@stark.com"));
-		assertTrue(this.biblioteca.exportarSocios().contains("5234-5"));
-		assertTrue(this.biblioteca.exportarSocios().contains("Tyron Lannister"));
-		assertTrue(this.biblioteca.exportarSocios().contains("tyron@thelannisters.com"));
-		assertTrue(this.biblioteca.exportarSocios().contains("2345-2"));
+	public void testExportarSocios() throws ParseException {
+		JSONParser parser = new JSONParser();
+		assertTrue(parser.parse(this.biblioteca.exportarSocios()).toString().contains("Arya Stark"));
+		assertTrue(parser.parse(this.biblioteca.exportarSocios()).toString().contains("needle@stark.com"));
+		assertTrue(parser.parse(this.biblioteca.exportarSocios()).toString().contains("5234-5"));
+		assertTrue(parser.parse(this.biblioteca.exportarSocios()).toString().contains("Tyron Lannister"));
+		assertTrue(parser.parse(this.biblioteca.exportarSocios()).toString().contains("tyron@thelannisters.com"));
+		assertTrue(parser.parse(this.biblioteca.exportarSocios()).toString().contains("2345-2"));
 	}
 	
 	
