@@ -1,0 +1,5 @@
+La solucion es a traves del tamplate method, que es el calcular sueldo de la clase abstracta Empleado, ya que la estructura 
+de como calcular el sueldo total es igual en cada tipo de empleado, salvo que se cambia la forma de calcular cada elemento que
+influye en el total, dicho calculos se implementan en cada sibclase de empleado.
+Ademas se hizo PLanta subclase de temporario ya que son identicos excepto que PLanta agrega antiguedad y redefine como 
+se obtiene sueldo basico y adicional.
