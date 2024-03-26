@@ -1,23 +1,23 @@
 package ar.edu.info.unlp.ejercicioDemo;
 
-public class tweet extends post {
+public class tweet  {
 		private String message;
+		private String user;
 		
 		public tweet(String user, String msg) {
-			super(user);
 			this.message = msg;
+			this.user=user;
 		}
 		
 		private String getMessage() {
 			return this.message;
 		}
+		
+		public String getUserName() {
+			return this.user;
+		}
+		
 		public String getTweet() {
 			return  "Tweet de "+this.getUserName()+" "+ this.getMessage();		
-		}
-
-		@Override
-		public String getBody() {
-			// TODO Auto-generated method stub
-			return null;
 		}
 }

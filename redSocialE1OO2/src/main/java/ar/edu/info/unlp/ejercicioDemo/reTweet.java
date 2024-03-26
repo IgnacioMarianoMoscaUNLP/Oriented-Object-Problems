@@ -1,22 +1,27 @@
 package ar.edu.info.unlp.ejercicioDemo;
 
-public class reTweet extends post{
+public class reTweet extends tweet{
 	private tweet reference;
 	
 	public reTweet( tweet tweet,String user) {
-		super(user);
-		this.reference = tweet; 
+		super(user,null);
+		this.reference = tweet;
 	}
 	
 	private String getReferenceMessage() {
 		return this.reference.getTweet();
 	}
-	
-	public String getBody() {
-		if(this.reference==null) {
-			return "ReTweet de "+this.getUserName()+ " post no disponible";
-		}
-		return "ReTweet de "+this.getUserName()+ " post "+this.getReferenceMessage();
+	public void setTweet(tweet tweet) {
+		this.reference = tweet;
 	}
+
+	@Override
+	public String getTweet() {
+		if(this.reference==null) {
+			return this.getUserName()+" ReTweet de: post no disponible";
+		}else {
+		return this.getUserName()+" ReTweet de: post "+this.getReferenceMessage();
+		}
+		}
 	
 }

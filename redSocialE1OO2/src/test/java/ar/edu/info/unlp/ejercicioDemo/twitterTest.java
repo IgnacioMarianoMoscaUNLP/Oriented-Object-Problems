@@ -6,14 +6,16 @@ import org.junit.jupiter.api.Test;
 
 public class twitterTest {
 	twitter twitter;
-	post t;
+	tweet t;
+	user joaquin;
 	@BeforeEach
 	void setUp() throws Exception{
 		twitter = new twitter();
 		twitter.setUser("tomas");
 		twitter.setUser("joaquin");
+		joaquin = twitter.getUser("joaquin");
 		twitter.createPost("soy tomas", "tomas");
-		t = twitter.createPost("soy joquin", "joaquin");
+		t = twitter.createPost("soy joaquin", "joaquin");
 		twitter.rePost(t, "tomas");
 	}
 	
@@ -36,7 +38,8 @@ public class twitterTest {
 	
 	@Test
 	public void testEliminarUser() {
-		assertNull(twitter.eliminateUser("joaquin")); //comprueba que se elimino joaquin
-		assertEquals("ReTweet de tomas post no disponible",twitter.getUser("tomas").getPosts().get(1));// comprueba el repost de tomas de un tweet de joaquin, segun el body del re post
+		twitter.eliminateUser("joaquin");
+		assertNull(twitter.getUser("joaquin")); //comprueba que se elimino joaquin
+		assertEquals("ReTweet de tomas post no disponible",twitter.getUser("tomas").getPosts().get(1).getTweet());// comprueba el repost de tomas de un tweet de joaquin, segun el body del re post
 	}
 }

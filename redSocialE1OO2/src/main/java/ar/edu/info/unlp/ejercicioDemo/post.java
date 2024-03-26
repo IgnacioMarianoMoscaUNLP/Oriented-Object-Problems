@@ -10,5 +10,6 @@ public abstract class post {
 		return this.user;
 	}
 	
-	public abstract String getBody();
+	public abstract String getTweet();
+	
 }

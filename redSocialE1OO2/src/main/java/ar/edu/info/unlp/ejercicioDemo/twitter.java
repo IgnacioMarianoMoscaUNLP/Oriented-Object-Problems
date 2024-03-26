@@ -13,17 +13,11 @@ public class twitter {
 		return this.systemUsers.stream().anyMatch(t->t.getScreenName()==sn);
 	}
 	
-	public user eliminateUser(String sn) {
-		user r = this.getUser(sn);
-		r.eliminateAllPosts();
-		int i;
-		for(i=0;i<this.systemUsers.size();i++) {
-			if(this.systemUsers.get(i).getScreenName()==sn) {
-				this.systemUsers.remove(i);
-				return null;
-			}
-		}
-		return null;
+	public user eliminateUser(String screenName) {
+		user user = this.getUser(screenName);
+		user.eliminateAllPosts();
+		this.systemUsers.remove(user);
+		return user;
 	}
 	
 	public Boolean setUser(String screenName) {
@@ -42,21 +36,18 @@ public class twitter {
 		return this.systemUsers.stream().filter(t->t.getScreenName().equals(sn)).findFirst().orElse(null);
 	}
 	
-	public post createPost(String msg, String screenName) {
+	public tweet createPost(String msg, String screenName) {
 		if((1<=msg.length()) && (msg.length()<280)) {
-			post t = this.getUser(screenName).createPost(msg);
 			System.out.print("tweet publicado");
-			return t;
+			return this.getUser(screenName).createPost(msg);
 		}else {
 			System.out.println("su tweet tweet debe tener un minomo de 1 caracter y macimo de 280 caracteres");
 			return null;
 		}
 		}
 	
-	public post rePost(post tweet, String sn) {
-		tweet passTweet= new tweet(tweet.getBody(),tweet.getUserName());
-		post tw = new reTweet(passTweet,sn);
-		passTweet = null;
-		return tw;
+	public tweet rePost(tweet tweet, String sn) {
+		this.getUser(sn).rePost(tweet);
+		return tweet;
 	}
 }
