@@ -29,9 +29,6 @@ public class user {
 		return retweet;
 	}
 	
-	public String getScreenName() {
-		return this.screenName;
-	}
 	public void eliminateAllPosts() {
 		this.tweets.clear();
 	}
