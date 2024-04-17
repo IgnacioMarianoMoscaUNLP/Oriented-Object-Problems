@@ -6,6 +6,7 @@ public class DataBaseReal implements DataBaseAccess{
 
 	private List<String[]> database;
 
+	
 	public DataBaseReal() {
 		this.database = new ArrayList<String[]>();
 	}
@@ -13,12 +14,11 @@ public class DataBaseReal implements DataBaseAccess{
     @Override
     public int insertNewRow(String[] rowData) {
     	this.database.add(rowData);
-        return 0; // Código de inserción simulado
+        return this.database.lastIndexOf(rowData);
     }
-
     @Override
-    public String[] getSearchResults(String queryString) {
+    public String[] getSearchResults(int queryString) {
        
-        return null; // Resultados de búsqueda simulados
+        return this.database.get(queryString);
     }
 }

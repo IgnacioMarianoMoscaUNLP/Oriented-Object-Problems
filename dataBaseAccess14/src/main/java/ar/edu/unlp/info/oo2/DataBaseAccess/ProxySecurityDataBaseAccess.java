@@ -17,6 +17,10 @@ class ProxySecurityDataBaseAccess implements DataBaseAccess {
         	throw new RuntimeException("Contraseña de Acceso incorrecta");
         }
     }
+    
+    public void logOut() {
+    	this.session = false;
+    }
 
     private boolean isLogin() {
     	
@@ -26,7 +30,7 @@ class ProxySecurityDataBaseAccess implements DataBaseAccess {
     @Override
     public int insertNewRow(String[] rowData) {
         if (isLogin()) {
-            // Registro de acceso correcto, permitir la inserción
+          
             return databaseAccess.insertNewRow(rowData);
         } else {
         	throw new RuntimeException("NO tiene acceso autorizado, ingrese contraseña de acceso");        
@@ -34,7 +38,7 @@ class ProxySecurityDataBaseAccess implements DataBaseAccess {
     }
 
     @Override
-    public String[] getSearchResults(String queryString) {
+    public String[] getSearchResults(int queryString) {
         if (isLogin()) {
             return databaseAccess.getSearchResults(queryString);
         } else {
