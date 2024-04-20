@@ -32,5 +32,11 @@ public class Agua extends Topografia{
 		return null;
 	}
 
+	@Override
+	public Boolean igualMixta(Mixta m) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 }

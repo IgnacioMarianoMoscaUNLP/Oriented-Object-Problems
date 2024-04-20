@@ -8,7 +8,7 @@ public abstract class Topografia {
 		return (this.igualAgua(t.proporcionAgua())&& this.igualTierra(t.proporcionTierra()));
 	}
 
-	
+	public abstract Boolean igualMixta(Mixta m);
 	public abstract Boolean igualTierra(Integer d);
 	public abstract Boolean igualAgua(Integer d);
 	public abstract List getPartes();

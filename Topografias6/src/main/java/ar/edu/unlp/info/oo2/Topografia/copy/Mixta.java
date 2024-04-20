@@ -27,7 +27,7 @@ public class Mixta extends Topografia{
 	@Override
 	public Boolean igual(Topografia t) {
 			
-		return igualMixta(t);
+		return t.igualMixta(this);
 	}
 
 	@Override
@@ -40,12 +40,10 @@ public class Mixta extends Topografia{
 		return this.proporcionAgua()==p;
 	}
 
-	public Boolean igualMixta(Topografia t) {
-		if(super.igual(t))
-		{	System.out.println("Misma Proporciones");
-			return this.partes.equals(t.getPartes());
-		}
-		return false;
+
+	@Override
+	public Boolean igualMixta(Mixta m) {
+		return this.partes.equals(m.getPartes());
 	}
 
 }
