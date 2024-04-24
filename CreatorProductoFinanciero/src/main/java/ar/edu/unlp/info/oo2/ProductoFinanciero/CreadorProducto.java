@@ -1,5 +1,7 @@
 package ar.edu.unlp.info.oo2.ProductoFinanciero;
 
-public class CreadorProducto {
 
+
+abstract class CreadorProducto {
+    public abstract ProductoFinanciero doProduct();
 }
