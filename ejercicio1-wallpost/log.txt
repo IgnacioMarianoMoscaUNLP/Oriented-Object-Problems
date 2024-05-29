@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-05-29T21:52:27.918196200Z</date>
+  <millis>1717019547918</millis>
+  <nanos>196200</nanos>
+  <sequence>0</sequence>
+  <logger>app.main</logger>
+  <level>INFO</level>
+  <class>ar.edu.unlp.oo1.ejercicio1.app.Ejercicio1Application</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>app iniciada</message>
+</record>
