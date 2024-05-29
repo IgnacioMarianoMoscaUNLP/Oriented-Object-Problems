@@ -1,20 +1,24 @@
 package ar.edu.unlp.info.oo2.DataBaseAccess;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
-class ProxySecurityDataBaseAccess implements DataBaseAccess {
+public class ProxySecurityDataBaseAccess implements DataBaseAccess {
     private DataBaseAccess databaseAccess;
     private Boolean session;
 
     public ProxySecurityDataBaseAccess(DataBaseAccess databaseAccess) {
+    	Logger.getLogger("proxy.main");
         this.databaseAccess = databaseAccess;
         this.session = false;
     }
 
-    public void log(String password) {
+    public boolean log(String password) {
         if(password =="objetosDos") {
         	this.session = true;
+        	return true;
         }
         else {
-        	throw new RuntimeException("Contraseña de Acceso incorrecta");
+        	return false;
         }
     }
     
@@ -23,27 +27,30 @@ class ProxySecurityDataBaseAccess implements DataBaseAccess {
     }
 
     private boolean isLogin() {
-    	
+    	if(session==false) {
+    		Logger.getLogger("proxy.main").log(Level.SEVERE,"Intento de acceso no autorizado");
+    	}
         return this.session;
     }
 
     @Override
     public int insertNewRow(String[] rowData) {
         if (isLogin()) {
-          
+        	Logger.getLogger("proxy.main").log(Level.WARNING,"Se incertó a la BD");
             return databaseAccess.insertNewRow(rowData);
         } else {
-        	throw new RuntimeException("NO tiene acceso autorizado, ingrese contraseña de acceso");        
+        	return -1;       
         }
     }
 
     @Override
     public String[] getSearchResults(int queryString) {
         if (isLogin()) {
-            return databaseAccess.getSearchResults(queryString);
+        	Logger.getLogger("proxy.main").log(Level.INFO,"Se buscaron resultados");
+        	return databaseAccess.getSearchResults(queryString);            
         } else {
            
-        	throw new RuntimeException("NO tiene acceso autorizado, ingrese contraseña de acceso");
+        	return null;
         }
     }
 }
