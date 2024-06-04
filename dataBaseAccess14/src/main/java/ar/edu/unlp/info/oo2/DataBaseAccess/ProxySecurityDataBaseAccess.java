@@ -5,9 +5,11 @@ import java.util.logging.Level;
 public class ProxySecurityDataBaseAccess implements DataBaseAccess {
     private DataBaseAccess databaseAccess;
     private Boolean session;
+    private  Logger logger;
 
     public ProxySecurityDataBaseAccess(DataBaseAccess databaseAccess) {
-    	Logger.getLogger("proxy.main");
+        
+    	logger  = Logger.getLogger("proxy.main");
         this.databaseAccess = databaseAccess;
         this.session = false;
     }
@@ -36,7 +38,7 @@ public class ProxySecurityDataBaseAccess implements DataBaseAccess {
     @Override
     public int insertNewRow(String[] rowData) {
         if (isLogin()) {
-        	Logger.getLogger("proxy.main").log(Level.WARNING,"Se incertó a la BD");
+        	logger.log(Level.WARNING,"Se incertó a la BD");
             return databaseAccess.insertNewRow(rowData);
         } else {
         	return -1;       
@@ -46,7 +48,7 @@ public class ProxySecurityDataBaseAccess implements DataBaseAccess {
     @Override
     public String[] getSearchResults(int queryString) {
         if (isLogin()) {
-        	Logger.getLogger("proxy.main").log(Level.INFO,"Se buscaron resultados");
+        	logger.log(Level.INFO,"Se buscaron resultados");
         	return databaseAccess.getSearchResults(queryString);            
         } else {
            
